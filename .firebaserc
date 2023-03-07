@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "app3-a3146": {
+      "hosting": {
+        "app": [
+          "app3-a3146"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "app3-a3146"
+  }
+}
