@@ -16,11 +16,17 @@ const routes: Routes = [
 		loadChildren: () => import('./home/home.module').then((m) => m.HomePageModule),
 		...canActivate(redirectUnauthorizedToLogin)
 	},
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+  },
 	{
 		path: '**',
 		redirectTo: '',
 		pathMatch: 'full'
-	}
+	},
+
 ];
 
 @NgModule({
