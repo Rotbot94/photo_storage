@@ -1,0 +1,14 @@
+.fallback {
+  border-radius: 50%;
+  background: #bfbfbf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border: 4px white solid;
+}

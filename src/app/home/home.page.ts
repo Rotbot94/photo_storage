@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 @Component({
 	selector: 'app-home',
 	templateUrl: 'home.page.html',
@@ -8,8 +6,6 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 	constructor(
-    private authService: AuthService,
-    private router: Router,
 	) {}
 
   routes = [

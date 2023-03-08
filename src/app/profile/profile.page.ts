@@ -22,14 +22,13 @@ export class ProfilePage {
       title: "Home",
       url: "/",
     }
-  ]
-
+  ];
   constructor(
     private avatarService: AvatarService,
     private authService: AuthService,
     private router: Router,
     private loadingController: LoadingController,
-    private alertController: AlertController
+    private alertController: AlertController,
   ) {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
@@ -61,5 +60,4 @@ export class ProfilePage {
       }
     }
   }
-
 }
