@@ -25,6 +25,12 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.flex-center-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 * {
   font-weight: 550!important;
   font-family: sans-serif!important;
@@ -38,10 +44,23 @@
   border: 2px solid white;
 }
 
-input {
-  color: #5A5A5A!important;
-}
-
 .text-white {
   color: white!important;
 }
+
+ion-modal {
+  --height: 75%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --ion-background-color: var(--ion-color-primary-tint);
+}
+
+ion-modal ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+.center {
+  margin: 0 auto;
+}
+
