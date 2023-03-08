@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 
@@ -12,7 +12,7 @@ interface route {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() pageName: string;
   @Input() routes: route[];
 
@@ -21,12 +21,6 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
   }
-
-  ngOnInit() {
-    console.log(this.pageName);
-    console.log(this.routes);
-  }
-
   async logout() {
     await this.authService.logout();
     await this.router.navigateByUrl('/', {replaceUrl: true});
