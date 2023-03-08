@@ -4,10 +4,10 @@
       <ion-title>Menu Content</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content  class="ion-padding">
+  <ion-content class="ion-padding">
     <ng-container *ngIf="routes?.length > 0; else noRoutes">
       <ng-container *ngFor="let route of routes; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[route.url]" lines="none" detail="false"
+        <ion-item routerDirection="root" [routerLink]="[route.url]" lines="true" detail="false"
                   routerLinkActive="selected">
           <ion-label>{{route.title }}</ion-label>
         </ion-item>
@@ -26,6 +26,6 @@
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{pageName ?? 'page title'}}</ion-title>
+    <ion-title>IONIC APP</ion-title>
   </ion-toolbar>
 </ion-header>

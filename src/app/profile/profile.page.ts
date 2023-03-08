@@ -12,17 +12,6 @@ import {AvatarService} from '../services/avatar.service';
 })
 export class ProfilePage {
   profile: any;
-  routes = [
-    {
-      title: "Profile",
-      url: "/profile",
-
-    },
-    {
-      title: "Home",
-      url: "/",
-    }
-  ];
   constructor(
     private avatarService: AvatarService,
     private authService: AuthService,

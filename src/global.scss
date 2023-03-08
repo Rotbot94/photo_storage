@@ -27,9 +27,21 @@
 
 * {
   font-weight: 550!important;
+  font-family: sans-serif!important;
+}
+
+.page {
+  margin-top: 50px!important;
 }
 
 .bordered {
   border: 2px solid white;
+}
+
+input {
+  color: #5A5A5A!important;
+}
+
+.text-white {
   color: white!important;
 }

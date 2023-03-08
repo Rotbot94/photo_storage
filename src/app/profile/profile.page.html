@@ -1,6 +1,5 @@
-<app-header pageName="My Profile" [routes]="routes"/>
-<ion-content class="ion-padding" id="main-content">
-  <ion-card color="secondary" class="bordered">
+<ion-content class="ion-padding">
+  <ion-card color="secondary" class="page bordered">
     <ion-grid>
       <ion-row class="ion-justify-content-end">
         <ion-col size="auto">
@@ -17,7 +16,7 @@
       <ion-row class="ion-justify-content-center">
         <ion-col size="auto">
           <ion-avatar class="avatar" (click)="changeImage()">
-            <img *ngIf="profile?.imageUrl; else placeholder_avatar;" [src]="profile.imageUrl"/>
+            <img *ngIf="profile?.imageUrl; else placeholder_avatar;" [src]="profile.imageUrl" alt="avatar image"/>
             <ng-template #placeholder_avatar>
               <div class="fallback avatar">
                 <p>Select avatar</p>
@@ -28,8 +27,8 @@
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-col size="10">
-          <ion-card color="tertiary" class="bordered ion-padding ion-justify-content-center">
-            <ion-card-title >User name</ion-card-title>
+          <ion-card color="tertiary" class="text-white bordered ion-padding ion-justify-content-center">
+            <ion-card-title>User name</ion-card-title>
             <ion-card-content>
               User description
             </ion-card-content>
@@ -38,5 +37,4 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
 </ion-content>

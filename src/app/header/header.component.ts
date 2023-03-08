@@ -8,13 +8,14 @@ interface route {
 }
 
 @Component({
-  selector: 'app-header',
+  selector: 'Header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() pageName: string;
-  @Input() routes: route[];
+  routes: route[] = [
+    {title: 'Home', url: '/'}, {title: 'Profile', url: '/profile'}
+  ];
 
   constructor(
     private authService: AuthService,

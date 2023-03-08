@@ -7,16 +7,4 @@ import { Component } from '@angular/core';
 export class HomePage {
 	constructor(
 	) {}
-
-  routes = [
-    {
-      title: "Profile",
-      url: "/profile",
-
-    },
-    {
-      title: "Home",
-      url: "/",
-    }
-  ]
 }
