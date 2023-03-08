@@ -5,20 +5,23 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ng-container *ngIf="routes?.length > 0; else noRoutes">
-      <ng-container *ngFor="let route of routes; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[route.url]" lines="true" detail="false"
-                  routerLinkActive="selected">
-          <ion-label>{{route.title }}</ion-label>
-        </ion-item>
+    <ion-menu-toggle auto-hide="true">
+      <ng-container *ngIf="routes?.length > 0; else noRoutes">
+        <ng-container *ngFor="let route of routes; let i = index">
+          <ion-item routerDirection="root" [routerLink]="[route.url]" lines="true" detail="false"
+                    routerLinkActive="selected">
+            <ion-label>{{route.title }}</ion-label>
+          </ion-item>
+        </ng-container>
       </ng-container>
-    </ng-container>
-    <ng-template #noRoutes>
-      <ion-title>No links passed</ion-title>
-    </ng-template>
-    <ion-button (click)="logout()">
-      <ion-icon slot="icon-only" name="log-out"></ion-icon>
-    </ion-button>
+      <ng-template #noRoutes>
+        <ion-title>No links passed</ion-title>
+      </ng-template>
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-menu-toggle>
+
   </ion-content>
 </ion-menu>
 <ion-header>
@@ -26,6 +29,6 @@
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-      <ion-title routerLink="/">IONIC APP</ion-title>
+    <ion-title routerLink="/">IONIC APP</ion-title>
   </ion-toolbar>
 </ion-header>
