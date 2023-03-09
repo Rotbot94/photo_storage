@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Camera, CameraResultType, CameraSource, Photo} from '@capacitor/camera';
 import {LoadingController, AlertController, IonModal} from '@ionic/angular';
-import {AuthService} from '../services/auth.service';
-import {AvatarService} from '../services/avatar.service';
+import {AuthService} from '../../services/auth.service';
+import {AvatarService} from '../../services/avatar.service';
 import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {UserService} from "../services/user.service";
-import {ProfileData, User} from "../interfaces/interface";
+import {UserService} from "../../services/user.service";
+import {ProfileData, User} from "../../interfaces/interface";
 
 @Component({
   selector: 'app-profile',

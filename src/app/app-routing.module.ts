@@ -18,7 +18,7 @@ const routes: Routes = [
 	},
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
 	{
@@ -26,6 +26,15 @@ const routes: Routes = [
 		redirectTo: '',
 		pathMatch: 'full'
 	},
+  {
+    path: 'upload',
+    loadChildren: () => import('./upload/upload.module').then( m => m.UploadPageModule)
+  },
+  {
+    path: 'gallery',
+    loadChildren: () => import('./gallery/gallery.module').then( m => m.GalleryPageModule)
+  },
+
 
 ];
 
