@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
@@ -14,7 +14,10 @@ interface route {
 })
 export class HeaderComponent {
   routes: route[] = [
-    {title: 'Home', url: '/'}, {title: 'Profile', url: '/profile'}
+    {title: 'Home', url: '/'},
+    {title: 'Upload Photos', url: '/upload'},
+    {title: 'Your Photos', url: '/gallery'},
+    {title: 'Profile', url: '/profile'},
   ];
 
   constructor(

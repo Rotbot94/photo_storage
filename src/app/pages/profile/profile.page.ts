@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Camera, CameraResultType, CameraSource, Photo} from '@capacitor/camera';
-import {LoadingController, AlertController, IonModal} from '@ionic/angular';
+import {LoadingController, AlertController, ActionSheetController} from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
 import {AvatarService} from '../../services/avatar.service';
 import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
@@ -26,10 +26,10 @@ export class ProfilePage {
     private loadingController: LoadingController,
     private alertController: AlertController,
     private formBuilder: FormBuilder,
+    private actionSheetCtrl: ActionSheetController
   ) {
     this.userService.getUserProfile().subscribe((data) => {
       this.profile = data;
-      console.log(this.profile)
     });
     this.profileDataForm = this.formBuilder.group({
       name: [''],
@@ -38,17 +38,34 @@ export class ProfilePage {
     }, {validator: this.atLeastOne(Validators.required)});
   }
 
-  async addPhotoToForm() {
-    const image = await Camera.getPhoto({
+  async addPhotoToForm(option: string) {
+    const photoGalleryOptions = {
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Base64,
-      source: CameraSource.Photos // Camera, Photos or Prompt!
-    });
-    if (image) {
-      //insert imaga data to form
-      this.profileDataForm.controls['image'].setValue(image);
-      this.profileDataForm.controls['image'].markAsDirty();
+      source: CameraSource.Photos,
+    }
+    const cameraOptions = {
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+    }
+
+    if(option === 'camera') {
+      const image = await Camera.getPhoto(cameraOptions);
+      if (image) {
+        //insert imaga data to form
+        this.profileDataForm.controls['image'].setValue(image);
+        this.profileDataForm.controls['image'].markAsDirty();
+      }
+    } else if (option === 'gallery') {
+      const image = await Camera.getPhoto(photoGalleryOptions);
+      if (image) {
+        //insert imaga data to form
+        this.profileDataForm.controls['image'].setValue(image);
+        this.profileDataForm.controls['image'].markAsDirty();
+      }
     }
   }
 
@@ -94,6 +111,7 @@ export class ProfilePage {
       });
     }
     this.profileDataForm.reset();
+    this.isModalOpen = false;
   }
 
   atLeastOne = (validator: ValidatorFn) => (
@@ -112,5 +130,27 @@ export class ProfilePage {
   async insertOrUpdateUserProfileData(profileData: ProfileData) {
     await this.userService.uploadUserProfileData(profileData);
   }
+
+  async selectPhotoSource() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Select source',
+      buttons: [
+        {
+          text: 'Camera',
+          data: 'camera'
+        },
+        {
+          text: 'Gallery',
+          data: 'gallery'
+        },
+      ],
+    });
+
+    await actionSheet.present();
+
+    const uploadOption = await actionSheet.onDidDismiss();
+    await this.addPhotoToForm(uploadOption?.data);
+  }
+
 
 }

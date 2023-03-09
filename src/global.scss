@@ -25,27 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.flex-center-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 * {
-  font-weight: 550!important;
-  font-family: sans-serif!important;
-}
-
-.page {
-  margin-top: 50px!important;
-}
-
-.bordered {
-  border: 2px solid white;
-}
-
-.text-white {
-  color: white!important;
+  font-weight: 550 !important;
+  font-family: sans-serif !important;
 }
 
 ion-modal {
@@ -60,10 +42,47 @@ ion-modal ion-toolbar {
   --color: white;
 }
 
+.flex-center-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page {
+  margin-top: 50px !important;
+}
+
+.bordered {
+  border: 2px solid white;
+}
+
+.text-white {
+  color: white !important;
+}
+
 .center {
   margin: 0 auto;
 }
 
 .preserveEnd {
   white-space: pre-line;
+}
+
+.fullpage-center {
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.halfwidth {
+  width: 50%;
+}
+
+.big-icon {
+  font-size: 50px;
 }

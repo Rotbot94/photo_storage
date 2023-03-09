@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './gallery.page.html',
   styleUrls: ['./gallery.page.scss'],
 })
-export class GalleryPage implements OnInit {
+export class GalleryPage {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

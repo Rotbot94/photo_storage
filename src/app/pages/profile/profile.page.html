@@ -12,7 +12,7 @@
       <ion-content class="ion-padding">
         <form class="flex-center-col" [formGroup]="profileDataForm" (ngSubmit)="submitForm()">
           <div class="center">
-            <ion-avatar class="avatar" (click)="addPhotoToForm()">
+            <ion-avatar class="avatar" (click)="selectPhotoSource()">
               <div class="fallback">
                 <div *ngIf="profileDataForm?.get('image').dirty; else upload_image"
                      class="ion-text-center">
@@ -45,7 +45,7 @@
       <ion-row class="ion-justify-content-end">
         <ion-col size="auto">
           <ion-button class="bordered" id="click-trigger" (click)="setOpen(true)">
-            <ion-icon size="large" name="create"/>
+            <ion-icon name="create"/>
           </ion-button>
         </ion-col>
       </ion-row>
