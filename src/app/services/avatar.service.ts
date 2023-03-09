@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import { doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
 import {
   getDownloadURL,
   ref,
@@ -19,12 +19,6 @@ export class AvatarService {
     private storage: Storage
   ) {}
 
-  getUserProfile() {
-    const user = this.auth.currentUser;
-    const userDocRef = doc(this.firestore, `users/${user.uid}`);
-    return docData(userDocRef, { idField: 'id' });
-  }
-
   async uploadImage(cameraFile: Photo) {
     const user = this.auth.currentUser;
     const path = `uploads/${user.uid}/profile.webp`;
@@ -36,7 +30,7 @@ export class AvatarService {
       const imageUrl = await getDownloadURL(storageRef);
 
       const userDocRef = doc(this.firestore, `users/${user.uid}`);
-      await setDoc(userDocRef, {
+      await updateDoc(userDocRef, {
         imageUrl,
       });
       return true;

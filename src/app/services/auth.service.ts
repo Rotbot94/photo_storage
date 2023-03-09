@@ -5,11 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from '@angular/fire/auth';
-
-interface Credentials {
-  email: string;
-  password: string;
-}
+import {Credentials} from '../interfaces/interface';
 
 @Injectable({
   providedIn: 'root',

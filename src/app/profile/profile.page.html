@@ -12,7 +12,7 @@
       <ion-content class="ion-padding">
         <form class="flex-center-col" [formGroup]="profileDataForm" (ngSubmit)="submitForm()">
           <div class="center">
-            <ion-avatar class="avatar" (click)="imageUpload()">
+            <ion-avatar class="avatar" (click)="addPhotoToForm()">
               <div class="fallback">
                 <div *ngIf="profileDataForm?.get('image').dirty; else upload_image"
                      class="ion-text-center">
@@ -65,8 +65,8 @@
         <ion-col size="10">
           <ion-card color="tertiary" class="text-white bordered ion-padding ion-justify-content-center">
             <ion-card-content>
-              <h1>Name</h1>
-              Description
+              <h1>{{profile?.profileData?.name ?? 'Placeholder name'}}</h1>
+              {{profile?.profileData?.description ?? 'Placeholder description'}}
             </ion-card-content>
           </ion-card>
         </ion-col>

@@ -5,6 +5,8 @@ import {LoadingController, AlertController, IonModal} from '@ionic/angular';
 import {AuthService} from '../services/auth.service';
 import {AvatarService} from '../services/avatar.service';
 import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {UserService} from "../services/user.service";
+import {ProfileData, User} from "../interfaces/interface";
 
 @Component({
   selector: 'app-profile',
@@ -13,19 +15,21 @@ import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from 
 })
 export class ProfilePage {
   profileDataForm: FormGroup;
-  profile: any;
+  profile: User;
   isModalOpen = false;
 
   constructor(
     private avatarService: AvatarService,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {
-    this.avatarService.getUserProfile().subscribe((data) => {
+    this.userService.getUserProfile().subscribe((data) => {
       this.profile = data;
+      console.log(this.profile)
     });
     this.profileDataForm = this.formBuilder.group({
       name: [''],
@@ -34,7 +38,7 @@ export class ProfilePage {
     }, {validator: this.atLeastOne(Validators.required)});
   }
 
-  async imageUpload() {
+  async addPhotoToForm() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
@@ -48,7 +52,7 @@ export class ProfilePage {
     }
   }
 
-  async changeImage(image: Photo) {
+  async uploadImage(image: Photo) {
     if (image) {
       const loading = await this.loadingController.create();
       await loading.present();
@@ -73,8 +77,23 @@ export class ProfilePage {
 
   async submitForm() {
     if (this.profileDataForm?.get('image').dirty) {
-      await this.changeImage((this.profileDataForm?.get('image').value as Photo))
+      await this.uploadImage((this.profileDataForm?.get('image').value as Photo));
     }
+    if (this.profileDataForm?.get('name').dirty && this.profileDataForm?.get('description').dirty) {
+      await this.insertOrUpdateUserProfileData({
+        name: this.profileDataForm?.get('name').value,
+        description: this.profileDataForm?.get('description').value,
+      });
+    } else if (this.profileDataForm?.get('name').dirty) {
+      await this.insertOrUpdateUserProfileData({
+        name: this.profileDataForm?.get('name').value
+      });
+    } else if (this.profileDataForm?.get('description').dirty) {
+      await this.insertOrUpdateUserProfileData({
+        description: this.profileDataForm?.get('description').value
+      });
+    }
+    this.profileDataForm.reset();
   }
 
   atLeastOne = (validator: ValidatorFn) => (
@@ -90,5 +109,8 @@ export class ProfilePage {
     return hasAtLeastOne ? null : {atLeastOne: true};
   };
 
+  async insertOrUpdateUserProfileData(profileData: ProfileData) {
+    await this.userService.uploadUserProfileData(profileData);
+  }
 
 }
