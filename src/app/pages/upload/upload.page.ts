@@ -13,7 +13,6 @@ export class UploadPage {
   }
 
   async selectImages() {
-
     const result = await FilePicker.pickFiles({
       multiple: true, readData: true
     });

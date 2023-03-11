@@ -1,9 +1,49 @@
 <ion-content class="ion-padding">
-  <ion-grid class="page">
+  <ion-grid class="page galleryElement">
     <ion-row class="ion-justify-content-center">
-      <ion-col>
-        <ion-text>Gallery text</ion-text>
-      </ion-col>
+      <ng-container *ngIf="imageUrls.length > 0; else noLinks">
+        <ng-container *ngFor="let url of imageUrls;  let i = index;">
+          <ng-container>
+            <ion-col style="margin: 1px" [ngClass]="selectedItem == i ? 'highlight' : ''" id="{{i}}"
+                     (click)="selectedItem = i" size="3"
+                     class="bordered galleryImage">
+              <ion-img (ionImgDidLoad)="!isLoading" [src]="url" alt="gallery_image"/>
+            </ion-col>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <ng-template #noLinks>
+        <ion-text>No images upload</ion-text>
+      </ng-template>
     </ion-row>
   </ion-grid>
+
+  <ng-container *ngIf="selectedItem > -1; else noneSelected">
+    <ion-grid class="ion-margin-top darkElementWithBorder">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+          <ion-text class="ion-text-center">
+            Image: {{selectedItem}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="auto">
+          <ion-icon (click)="saveItem(selectedItem)" style="margin-right: 10px" color="light" size="large"
+                    name="save-outline"></ion-icon>
+          <ion-icon (click)="deleteItem(selectedItem)" color="danger" size="large" name="trash-bin-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ng-template #noneSelected>
+    <ion-grid class="darkElementWithBorder ion-margin-top">
+      <ion-row class="ion-justify-content-center">
+        <ion-col>
+          <ion-text class="ion-text-center">Select an image by tapping it</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
 </ion-content>

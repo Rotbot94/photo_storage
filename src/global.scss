@@ -80,7 +80,8 @@ ion-modal ion-toolbar {
 }
 
 .halfwidth {
-  width: 50%;
+  max-width: 50% !important;
+  width: 100% !important;
 }
 
 .big-icon {
@@ -100,4 +101,19 @@ ion-modal ion-toolbar {
   max-height: 400px;
   min-width: 121px;
   overflow: scroll;
+}
+
+.galleryElement {
+  max-height: 620px;
+  border: solid #1A2925 2px;
+  overflow: scroll;
+}
+
+.highlight {
+  border: solid var(--ion-color-light) 4px !important;
+}
+
+.darkElementWithBorder {
+    background-color: var(--ion-color-primary);
+    border: solid #1A2925 2px;
 }
