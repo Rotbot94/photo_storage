@@ -5,8 +5,10 @@
         <ion-icon class="big-icon" (click)="selectImages()" name="add-circle-outline"></ion-icon>
       </ion-col>
     </ion-row>
-    <div *ngFor="let image of images">
-      <app-upload-instance [image]="image"></app-upload-instance>
+    <div class="imageUploadElement">
+      <div *ngFor="let image of images">
+        <app-upload-instance [image]="image"></app-upload-instance>
+      </div>
     </div>
   </ion-grid>
 </ion-content>

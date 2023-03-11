@@ -88,9 +88,10 @@ ion-modal ion-toolbar {
   font-size: 50px;
 }
 
-.thumbNailElement {
+.instanceElement {
   background-color: var(--ion-color-primary);
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
   border: solid #1A2925 2px;
@@ -98,7 +99,7 @@ ion-modal ion-toolbar {
 }
 
 .imageUploadElement {
-  max-height: 400px;
+  max-height: 600px;
   min-width: 121px;
   overflow: scroll;
 }
