@@ -52,7 +52,7 @@
       <ion-row class="ion-justify-content-center">
         <ion-col size="auto">
           <ion-avatar class="avatar">
-            <img *ngIf="profile?.imageUrl; else placeholder_avatar;" [src]="profile.imageUrl" alt="avatar image"/>
+            <img *ngIf="profile?.profileImage; else placeholder_avatar;" [src]="profile.profileImage" alt="avatar image"/>
             <ng-template #placeholder_avatar>
               <div class="fallback">
                 <ion-text>Avatar</ion-text>

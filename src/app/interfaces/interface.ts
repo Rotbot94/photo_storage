@@ -1,6 +1,6 @@
 export interface User {
   profileData?: ProfileData;
-  imageUrl?: string;
+  profileImage?: string;
 }
 
 export interface ProfileData {

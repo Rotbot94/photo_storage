@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
-import { UploadPageRoutingModule } from './upload-routing.module';
-
-import { UploadPage } from './upload.page';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {IonicModule} from '@ionic/angular';
+import {UploadPage} from './upload.page';
+import {UploadPageRoutingModule} from "./upload-routing.module";
+import {UploadInstanceComponent} from "../../components/upload-instance/upload-instance.component";
 
 @NgModule({
   imports: [
@@ -15,6 +13,6 @@ import { UploadPage } from './upload.page';
     IonicModule,
     UploadPageRoutingModule
   ],
-  declarations: [UploadPage]
+  declarations: [UploadPage, UploadInstanceComponent]
 })
 export class UploadPageModule {}

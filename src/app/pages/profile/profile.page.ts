@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {Camera, CameraResultType, CameraSource, Photo} from '@capacitor/camera';
 import {LoadingController, AlertController, ActionSheetController} from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
-import {AvatarService} from '../../services/avatar.service';
+import {ImageService} from '../../services/image.service';
 import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {ProfileData, User} from "../../interfaces/interface";
@@ -19,7 +19,7 @@ export class ProfilePage {
   isModalOpen = false;
 
   constructor(
-    private avatarService: AvatarService,
+    private imageService: ImageService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
@@ -38,12 +38,13 @@ export class ProfilePage {
     }, {validator: this.atLeastOne(Validators.required)});
   }
 
-  async addPhotoToForm(option: string) {
+  async addImageToForm(option: string) {
     const photoGalleryOptions = {
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Base64,
       source: CameraSource.Photos,
+
     }
     const cameraOptions = {
       quality: 90,
@@ -69,12 +70,12 @@ export class ProfilePage {
     }
   }
 
-  async uploadImage(image: Photo) {
+  async uploadPhoto(image: Photo) {
     if (image) {
       const loading = await this.loadingController.create();
       await loading.present();
 
-      const result = await this.avatarService.uploadImage(image);
+      const result = await this.imageService.uploadProfileImage(image);
       await loading.dismiss();
 
       if (!result) {
@@ -94,7 +95,7 @@ export class ProfilePage {
 
   async submitForm() {
     if (this.profileDataForm?.get('image').dirty) {
-      await this.uploadImage((this.profileDataForm?.get('image').value as Photo));
+      await this.uploadPhoto((this.profileDataForm?.get('image').value as Photo));
     }
     if (this.profileDataForm?.get('name').dirty && this.profileDataForm?.get('description').dirty) {
       await this.insertOrUpdateUserProfileData({
@@ -149,7 +150,7 @@ export class ProfilePage {
     await actionSheet.present();
 
     const uploadOption = await actionSheet.onDidDismiss();
-    await this.addPhotoToForm(uploadOption?.data);
+    await this.addImageToForm(uploadOption?.data);
   }
 
 
