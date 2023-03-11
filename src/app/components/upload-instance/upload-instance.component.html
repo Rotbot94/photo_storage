@@ -1,11 +1,8 @@
 <ion-col class="ion-margin-bottom thumbNailElement ion-align-items-center">
-  <ion-thumbnail>
+  <ion-thumbnail class="ion-margin-bottom">
     <ion-img src="data:image/png;base64, {{image.data}}" alt="uploaded image"/>
   </ion-thumbnail>
-  <div>
-    <progress value="{{percentage}}" max="100"></progress>
-    {{percentage}}%
-  </div>
+  <ion-progress-bar class="ion-margin-bottom" color="light" buffer="buffer" [value]="percentage"></ion-progress-bar>
   <div *ngIf="task$">
     <ion-icon color="light" size="large" (click)="task$.resume()" name="play-circle-outline"></ion-icon>
     <ion-icon color="light" size="large" (click)="task$.pause()" name="pause-circle-outline"></ion-icon>

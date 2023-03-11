@@ -17,7 +17,7 @@ export class UploadInstanceComponent implements OnInit {
 
   @Input() image: any;
 
-  percentage: any = 0;
+  percentage: number = 0;
   snapshot$: UploadTaskSnapshot;
 
   task$: UploadTask;
@@ -42,7 +42,7 @@ export class UploadInstanceComponent implements OnInit {
     uploadTask.on('state_changed',
       (snapshot) => {
         this.snapshot$ = snapshot;
-        this.percentage = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(0);
+        this.percentage = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       });
   }
 }
