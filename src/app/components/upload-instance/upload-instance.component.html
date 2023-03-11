@@ -2,7 +2,7 @@
   <ion-thumbnail>
     <ion-img src="data:image/png;base64, {{image.data}}" alt="uploaded image"/>
   </ion-thumbnail>
-  <div *ngIf="percentage">
+  <div>
     <progress value="{{percentage}}" max="100"></progress>
     {{percentage}}%
   </div>

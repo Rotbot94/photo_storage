@@ -14,7 +14,7 @@ export class UploadPage {
 
   async selectImages() {
 
-    const result = await FilePicker.pickFiles({
+    const result = await FilePicker.pickImages({
       multiple: true, readData: true
     });
     if (result.files) {
