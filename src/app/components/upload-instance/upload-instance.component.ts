@@ -38,12 +38,12 @@ export class UploadInstanceComponent implements OnInit {
     const storageRef = ref(this.storage, path);
     const uploadTask = uploadBytesResumable(storageRef, this.image.blob);
     this.task$ = uploadTask;
+    this.task$.pause();
     uploadTask.on('state_changed',
       (snapshot) => {
         this.snapshot$ = snapshot;
         this.percentage = ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(0);
       });
-    this.task$.pause();
   }
 }
 
