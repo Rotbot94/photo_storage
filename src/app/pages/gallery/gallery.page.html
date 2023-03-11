@@ -4,10 +4,9 @@
       <ng-container *ngIf="imageUrls.length > 0; else noLinks">
         <ng-container *ngFor="let url of imageUrls;  let i = index;">
           <ng-container>
-            <ion-col style="margin: 1px" [ngClass]="selectedItem == i ? 'highlight' : ''" id="{{i}}"
-                     (click)="selectedItem = i" size="3"
-                     class="bordered galleryImage">
-              <ion-img (ionImgDidLoad)="!isLoading" [src]="url" alt="gallery_image"/>
+            <ion-col (click)="selectedItem = i" size="auto">
+              <ion-img [ngClass]="selectedItem == i ? 'highlight' : ''" class="bordered ion-margin" (ionImgDidLoad)="!isLoading"
+                       [src]="url" alt="gallery_image"/>
             </ion-col>
           </ng-container>
         </ng-container>
