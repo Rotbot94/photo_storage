@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FilePicker} from '@capawesome/capacitor-file-picker';
+import {Camera} from "@capacitor/camera";
 
 @Component({
   selector: 'app-upload',
@@ -9,16 +9,16 @@ import {FilePicker} from '@capawesome/capacitor-file-picker';
 export class UploadPage {
   images: any[] = [];
 
-  constructor() {
-  }
-
+  constructor() {}
   async selectImages() {
-    const result = await FilePicker.pickFiles({
-      multiple: true, readData: true
+    const {photos} = await Camera.pickImages({
+      quality: 100,
+      correctOrientation: true,
     });
-    if (result.files) {
-      for (let i = 0; i < result.files.length; i++)
-        this.images.push(result.files[i]);
+    if(photos) {
+      photos.forEach((photo) => {
+        this.images.push(photo);
+      })
     }
   }
 }

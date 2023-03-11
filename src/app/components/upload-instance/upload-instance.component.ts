@@ -24,19 +24,23 @@ export class UploadInstanceComponent implements OnInit {
 
   constructor(
     private storage: Storage,
-    private auth: Auth,) {
+    private auth: Auth) {
   }
 
   ngOnInit() {
     console.log(this.image);
-    this.startUpload().then(r => console.log('run'));
+    this.startUpload().then(() => console.log('Upload was run'));
   }
 
   async startUpload() {
     const user = this.auth.currentUser;
-    const path = `images/${user.uid}/${Date.now()}+1.webp`;
+    const path = `images/${user.uid}/${Date.now()}.${this.image.format}`;
     const storageRef = ref(this.storage, path);
-    const uploadTask = uploadBytesResumable(storageRef, this.image.blob);
+    const response = await fetch(this.image.webPath);
+    const blob = await response.blob();
+    const uploadTask = uploadBytesResumable(storageRef, blob, {
+      contentType: this.image.format,
+    });
     this.task$ = uploadTask;
     this.task$.pause();
     uploadTask.on('state_changed',
