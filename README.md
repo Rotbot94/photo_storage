@@ -11,7 +11,7 @@ I want to emphasize that this project was not originally built to be shared. How
 Beware.. The styling is weird.
 ## Installation
 
-Create an enviroment.ts file in the enviroment directory and fill out the file with your firebase info - this project was created with web as its platform on Firebase.
+Fill out the src/environment/environment.ts file with your firebase info - this project was created with web as its platform on Firebase.
 ```
 export const environment = {
   firebase: {
