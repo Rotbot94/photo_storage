@@ -18,7 +18,6 @@ export const environment = {
     projectId: '',
     appId: '',
     storageBucket: '',
-    locationId: '',
     apiKey: '',
     authDomain: '',
     messagingSenderId: '',

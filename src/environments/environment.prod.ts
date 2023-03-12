@@ -3,11 +3,10 @@ export const environment = {
     projectId: '',
     appId: '',
     storageBucket: '',
-    locationId: '',
     apiKey: '',
     authDomain: '',
     messagingSenderId: '',
     measurementId: '',
   },
-  production: false
+  production: true
 };
