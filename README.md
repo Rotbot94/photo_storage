@@ -11,7 +11,22 @@ I want to emphasize that this project was not originally built to be shared. How
 Beware.. The styling is weird.
 ## Installation
 
-Fill out the environment.ts with your firebase info - this project was created with web as its platform on Firebase.
+Create an enviroment.ts file in the enviroment directory and fill out the file with your firebase info - this project was created with web as its platform on Firebase.
+```
+export const environment = {
+  firebase: {
+    projectId: '',
+    appId: '',
+    storageBucket: '',
+    locationId: '',
+    apiKey: '',
+    authDomain: '',
+    messagingSenderId: '',
+    measurementId: '',
+  },
+  production: false
+};
+```
 
 Requires ionic-cli and angular-cli
 ```
